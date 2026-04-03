@@ -1,0 +1,61 @@
+# SKILL.md — スキルインデックス
+
+Progressive Disclosure 設計: 必要な詳細度だけ読み込む。
+詳細な処理フローが必要な場合のみ `skills/` ディレクトリの該当ファイルを参照すること。
+
+---
+
+## Level 1: スキル一覧（ワンライナー）
+
+| コマンド | 説明 |
+|---|---|
+| `/freee-check` | freee の未処理明細をチェックし、仕訳を自動分類・登録する |
+| `/mtg-followup` | 議事録テキストからアクションアイテムとネクストアジェンダを生成する |
+| `/daily-report` | 当日の処理サマリと翌日のTODOをレポートとして生成する |
+| `/sop-convert` | 業務手順書（SOP）をSkillファイルに変換する |
+| `/rsa` | キャンペーンデータを読み込み、RSA広告文（見出し15本・説明4本）を生成する |
+| `/weekly-report` | 広告パフォーマンスの週次レポートを生成する |
+
+---
+
+## Level 2: スキル概要
+
+### `/freee-check`
+- **入力**: freee 事業所ID（省略時は設定ファイルの全事業所）
+- **出力**: 処理結果レポート（`reports/YYYY-MM-DD-freee-check.md`）
+- **所要時間**: 全事業所で約15〜30分
+- **詳細**: `skills/tax/freee-check.md` を参照
+
+### `/mtg-followup`
+- **入力**: 議事録テキスト（引数で渡すか、クリップボードから貼り付け）
+- **出力**: アクションアイテム一覧、次回アジェンダ案（Notionに自動保存）
+- **詳細**: `skills/common/mtg-followup.md` を参照
+
+### `/daily-report`
+- **入力**: なし（当日のログを自動収集）
+- **出力**: `reports/YYYY-MM-DD-daily.md`
+- **詳細**: `skills/common/daily-report.md` を参照
+
+### `/sop-convert`
+- **入力**: 業務手順書テキスト（引数または貼り付け）
+- **出力**: `skills/[domain]/[skill-name].md`（新規Skillファイル）
+- **詳細**: `skills/common/sop-convert.md` を参照
+
+### `/rsa`
+- **入力**: キャンペーンID または ブリーフテキスト
+- **出力**: Google Ads Editor インポート用CSV
+- **詳細**: `skills/marketing/rsa.md` を参照
+
+### `/weekly-report`
+- **入力**: 対象期間（省略時は直近7日間）
+- **出力**: `reports/YYYY-MM-DD-weekly.md`
+- **詳細**: `skills/marketing/weekly-report.md` を参照
+
+---
+
+## Level 3: 詳細仕様
+
+詳細な処理フロー・エラーハンドリング・MCP呼び出し仕様は
+`skills/` ディレクトリの各ファイルを参照してください。
+
+コンテキストウィンドウ節約のため、必要になるまでこのセクション以降は読み込まないこと。

@@ -1,0 +1,67 @@
+{
+  "_comment": "otti-ai MCP設定テンプレート。業種テンプレートの mcp/mcp-settings.json にコピーして使用してください。",
+  "mcpServers": {
+    "_comment_freee": "freee会計・人事労務との連携",
+    "freee": {
+      "command": "npx",
+      "args": ["-y", "@freee/mcp-server"],
+      "env": {
+        "FREEE_CLIENT_ID": "${FREEE_CLIENT_ID}",
+        "FREEE_CLIENT_SECRET": "${FREEE_CLIENT_SECRET}",
+        "FREEE_ACCESS_TOKEN": "${FREEE_ACCESS_TOKEN}"
+      }
+    },
+    "_comment_slack": "Slack通知・TODOの把握",
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    },
+    "_comment_google_calendar": "予定の取得・打ち合わせ前タスク生成",
+    "google-calendar": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-calendar"],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
+      }
+    },
+    "_comment_notion": "議事録・TODO管理",
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-notion"],
+      "env": {
+        "NOTION_API_TOKEN": "${NOTION_API_TOKEN}"
+      }
+    },
+    "_comment_google_ads": "マーケター向け: 広告パフォーマンス取得・操作",
+    "google-ads": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-ads"],
+      "env": {
+        "GOOGLE_ADS_DEVELOPER_TOKEN": "${GOOGLE_ADS_DEVELOPER_TOKEN}",
+        "GOOGLE_ADS_CUSTOMER_ID": "${GOOGLE_ADS_CUSTOMER_ID}",
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
+      }
+    },
+    "_comment_postgresql": "データベースへのクエリ実行",
+    "postgresql": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_URL": "${POSTGRES_URL}"
+      }
+    },
+    "_comment_filesystem": "ローカルファイルへのアクセス（常時有効）",
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/${USER}/my-workspace"
+      ]
+    }
+  }
+}

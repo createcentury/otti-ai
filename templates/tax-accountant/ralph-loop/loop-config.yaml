@@ -1,0 +1,40 @@
+# Ralph Loop 設定 — 税理士事務所ワークフロー
+
+schedules:
+  # 毎晩21時: 全事業所の自動仕訳バッチ
+  - name: nightly-freee-check
+    time: "21:00"
+    skill: freee-check
+    args: ""
+    max_retry: 3
+    notify_on_failure: slack
+
+  # 毎朝9時: 日次レポート生成
+  - name: morning-report
+    time: "09:00"
+    skill: daily-report
+    args: ""
+    max_retry: 2
+    notify_on_failure: slack
+
+  # 毎月最終営業日: 決算準備チェック（手動トリガーでも可）
+  # - name: monthly-kessho-prep
+  #   time: "10:00"
+  #   skill: kessho-prep
+  #   schedule: "last_business_day"
+
+circuit_breaker:
+  consecutive_error_threshold: 3
+  reset_after_minutes: 60
+
+logging:
+  dir: "logs/"
+  retention_days: 90
+  sensitive_fields:
+    - amount
+    - partner_name
+    - description
+
+git:
+  auto_commit: true
+  commit_on: success

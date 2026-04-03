@@ -1,0 +1,44 @@
+{
+  "_comment": "freee連携に必要なMCP設定。.envファイルに認証情報を記載してください。",
+  "mcpServers": {
+    "freee": {
+      "command": "npx",
+      "args": ["-y", "@freee/mcp-server"],
+      "env": {
+        "FREEE_CLIENT_ID": "${FREEE_CLIENT_ID}",
+        "FREEE_CLIENT_SECRET": "${FREEE_CLIENT_SECRET}",
+        "FREEE_ACCESS_TOKEN": "${FREEE_ACCESS_TOKEN}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    },
+    "google-calendar": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-calendar"],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-notion"],
+      "env": {
+        "NOTION_API_TOKEN": "${NOTION_API_TOKEN}"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
+    }
+  }
+}
